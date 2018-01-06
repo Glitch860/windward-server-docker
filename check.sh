@@ -1,5 +1,6 @@
 #!/bin/sh
 
+WINDWARD_SERVER_PORT=${WINDWARD_SERVER_PORT:-5127}
 HTTP_URL="http://localhost:${WINDWARD_SERVER_PORT}"
 
 stringContain()
@@ -14,7 +15,7 @@ stringContain()
 echo "Requesting status to ${HTTP_URL}..."
 HTTP_RESPONSE=`curl ${HTTP_URL} 2> /dev/null`
 
-if stringContain "${HTTP_RESPONSE}" "${WINDWARD_SERVER_NAME}"; then
+if stringContain "${HTTP_RESPONSE}" "Clients:"; then
   echo "Windward server is running properly."
   exit 0
 else
