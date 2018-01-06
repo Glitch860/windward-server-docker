@@ -1,0 +1,20 @@
+# Example docker-compose file
+
+version: '3'
+
+services:
+  server:
+    image: reimashi/windward:latest
+    environment:
+      - TZ="Europe/Madrid"
+      - WINDWARD_PUBLIC=0
+      - WINDWARD_SERVER_NAME=Test server
+      - WINDWARD_SERVER_WORLD=test
+      - WINDWARD_ADMINS=76561198046342164,76561198108169116
+    ports:
+      - 5127:5127/tcp
+    volumes:
+      - map:/windward/Worlds
+    restart: always
+volumes:
+  map:
