@@ -1,4 +1,4 @@
-FROM frolvlad/alpine-mono:latest
+FROM mono:slim
 
 # Environment variables
 ENV WINDWARD_SERVER_NAME "Docker Test"
@@ -9,17 +9,19 @@ ENV WINDWARD_PUBLIC 0
 
 # Install dependencies
 # - curl: Health check
-RUN apk update && \
-    apk add curl
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    apt-get install -y curl unzip && \
+    apt-get clean -y
 
 # Create app folder
 RUN mkdir -p /windward
 
 # Download last server
-RUN  cd /tmp && \
-    curl -O -J -L http://www.tasharen.com/windward/WWServer.zip && \
-    unzip ./WWServer.zip && \
-    cp WWServer.exe /windward/ && \
+WORKDIR /tmp
+RUN curl -O -J -L http://www.tasharen.com/windward/WWServer.zip && \
+    unzip /tmp/WWServer.zip && \
+    cp /tmp/WWServer.exe /windward/ && \
     rm -f /tmp/WWS*
 
 # Copy scripts
