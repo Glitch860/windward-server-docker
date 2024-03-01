@@ -20,3 +20,6 @@
 
 - ``` docker run -d -e WINDWARD_SERVER_NAME=Testing -p 5127:5127/tcp --name windward-server reimashi/windward:latest ```
 - [Docker Compose example on repository](https://github.com/reimashi/windward-docker/blob/master/docker-compose.yml).
+
+# Forked changes
+Updated the docker-compose file to give an example of how to host this docker server image on an NFS share volume for persistent storage. 
