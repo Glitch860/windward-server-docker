@@ -1,14 +1,12 @@
-# Example docker-compose file
-
 version: '3'
 
 services:
   server:
     image: reimashi/windward:latest
     environment:
-      - TZ="Europe/Madrid"
+      - TZ="America/New_York"
       - WINDWARD_PUBLIC=0
-      - WINDWARD_SERVER_NAME=Test server
+      - WINDWARD_SERVER_NAME=Test Server World
       - WINDWARD_SERVER_WORLD=test
       - WINDWARD_ADMINS=76561198046342164,76561198108169116
     ports:
@@ -18,3 +16,8 @@ services:
     restart: always
 volumes:
   map:
+      driver: local
+      driver_opts:
+        type: nfs
+        o: addr=192.168.1.X,rw
+        device: ":/mnt/<Path to NFS share>/windward"
