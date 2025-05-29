@@ -29,7 +29,7 @@ To run this container as a service on a Docker swarm
 >> You MUST have persistent storage solution such as NFS
 
 ```
-docker stack deploy windward
+docker stack deploy -c docker-compose.yml windward
 ```
 
 To list running Docker swarm stacks/services:
